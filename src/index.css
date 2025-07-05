@@ -1,0 +1,463 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto, Lato, sans-serif";
+}
+
+.app {
+  display: flex;
+}
+
+.sidebar {
+  background: url("./assets/images/bg-sidebar-desktop.svg") no-repeat center
+    center;
+  background-size: cover;
+  border-radius: 10px;
+  padding: 2.5rem 2rem;
+  width: 270px;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+
+.step-labels {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.stepIcon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  background: transparent;
+  color: #fff;
+  transition: background 0.2s, color 0.2s;
+}
+
+.stepIcon.selected {
+  background: #bfe2fd;
+  color: #022959;
+  border: none;
+}
+
+.step-step {
+  font-size: 0.9rem;
+  color: #abbcff;
+  letter-spacing: 1.5px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.step-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    padding: 1.5rem 0.5rem;
+  }
+}
+
+/* Optional: background shapes (for the bottom left) */
+.sidebar::after {
+  content: "";
+  position: absolute;
+  left: -60px;
+  bottom: -60px;
+  width: 220px;
+  height: 120px;
+  background: #f9818e;
+  border-radius: 100px 100px 0 0;
+  z-index: 0;
+  opacity: 0.7;
+}
+.sidebar::before {
+  content: "";
+  position: absolute;
+  left: -40px;
+  bottom: 40px;
+  width: 120px;
+  height: 120px;
+  background: #ffaf7e;
+  border-radius: 50%;
+  z-index: 0;
+  opacity: 0.7;
+}
+.steps,
+.step {
+  position: relative;
+  z-index: 1;
+}
+
+/*FIRST*/
+
+/* Пример: добави към index.css или First.css */
+.step-info-div {
+  background: #fff;
+  border-radius: 10px;
+  padding: 2.5rem 3rem 2rem 3rem;
+  box-shadow: 0 8px 32px rgba(32, 32, 72, 0.08);
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  display: inline-block;
+  margin-left: 30px;
+}
+
+.step-info-div h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #022959;
+  margin-bottom: 0.5rem;
+}
+
+.step-info-div > p {
+  color: #9699aa;
+  font-size: 1.1rem;
+  margin-bottom: 2.2rem;
+}
+
+.step-info-div form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.step-info-div label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #022959;
+  margin-bottom: 0.3rem;
+}
+
+.step-info-div input[type="text"] {
+  padding: 0.8rem 1rem;
+  border: 1.5px solid #d6d9e6;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  color: #022959;
+  outline: none;
+  transition: border 0.2s;
+  margin-bottom: 0.2rem;
+}
+
+.step-info-div input[type="text"]:focus {
+  border: 1.5px solid #483eff;
+}
+
+.input-error {
+  border: 1.5px solid #ee374a !important;
+  background: #fff0f3;
+}
+
+.error-message {
+  color: #ee374a;
+  font-size: 0.98rem;
+  font-weight: 500;
+  margin-top: -1.1rem;
+  margin-bottom: 0.7rem;
+  text-align: right;
+}
+
+.next {
+  margin-top: 1.5rem;
+  align-self: flex-end;
+  background: #022959;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 0.9rem 2.2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.next:hover {
+  background: #174a8b;
+}
+
+/*SECOND*/
+
+/* Стилизиране на плановете */
+.plan-item {
+  flex: 1 1 0;
+  min-width: 160px;
+  max-width: 210px;
+  background: #fff;
+  border: 2px solid #d6d9e6;
+  border-radius: 10px;
+  padding: 1.5rem 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  cursor: pointer;
+  transition: border 0.2s, background 0.2s;
+  margin-right: 1.5rem;
+  margin-bottom: 0.5rem;
+  box-sizing: border-box;
+}
+
+.plan-item:last-child {
+  margin-right: 0;
+}
+
+.plan-item.selected {
+  border: 2px solid #483eff;
+  background: #f8f9ff;
+}
+
+.plan-item img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 2.2rem;
+}
+
+.plan-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #022959;
+  margin-bottom: 0.3rem;
+}
+
+.plan-price {
+  font-size: 1rem;
+  color: #9699aa;
+  font-weight: 500;
+}
+
+/* .step-info-div h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #022959;
+  margin-bottom: 0.5rem;
+}
+
+.step-info-div > p {
+  color: #9699aa;
+  font-size: 1.1rem;
+  margin-bottom: 2.2rem;
+}
+
+.step-info-div {
+  background: #fff;
+  border-radius: 10px;
+  padding: 2.5rem 3rem 2rem 3rem;
+  box-shadow: 0 8px 32px rgba(32, 32, 72, 0.08);
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+} */
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2.5rem;
+}
+
+.back {
+  background: none;
+  color: #022959;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.back:hover {
+  color: #483eff;
+}
+
+.plan-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: 2.2rem;
+}
+
+/*THIRD*/
+
+.add-on {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid #483eff;
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1.2rem;
+  background: #fff;
+  transition: border 0.2s, background 0.2s;
+  cursor: pointer;
+}
+
+.add-on:last-child {
+  margin-bottom: 0;
+}
+
+.add-on .MuiCheckbox-root {
+  margin-right: 1.2rem;
+}
+
+.add-on-contents {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.add-on-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #022959;
+  margin-bottom: 0.2rem;
+}
+
+.add-on-text {
+  font-size: 1rem;
+  color: #9699aa;
+}
+
+.add-on-price {
+  font-size: 1.1rem;
+  color: #483eff;
+  font-weight: 500;
+  margin-left: 2rem;
+  white-space: nowrap;
+}
+
+/*FOURTH*/
+
+.summary-container {
+  background: #f8f9ff;
+  border-radius: 12px;
+  padding: 2rem 2.5rem 1.5rem 2.5rem;
+  margin-bottom: 2.5rem;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 12px rgba(32, 32, 72, 0.04);
+}
+
+.summarySelectedPlan {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1.5px solid #d6d9e6;
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.summarySelectedPlan-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #022959;
+  margin-bottom: 0.2rem;
+}
+
+.summarySelectedPlan-change {
+  font-size: 1rem;
+  color: #483eff;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 0.2rem;
+  display: inline-block;
+}
+
+.summarySelectedPlan-price {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #022959;
+}
+
+.summarySelectedAddOns {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-bottom: 1.2rem;
+}
+
+.summaryAddOn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #9699aa;
+  font-size: 1rem;
+}
+
+.summaryAddOn-price {
+  color: #022959;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4rem;
+  font-size: 1.15rem;
+}
+
+.total p:first-child {
+  color: #9699aa;
+}
+
+.total p:last-child {
+  color: #483eff;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.addOn-price {
+  position: absolute;
+  right: 650px;
+}
+
+.adds-on-div {
+  display: flex;
+}
+
+.plan-price {
+  position: absolute;
+  right: 650px;
+}
