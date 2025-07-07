@@ -1,7 +1,7 @@
 import Checkbox from "@mui/material/Checkbox";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createAddsOn, stepDec, stepInc } from "./planSlice";
+import { createAddsOn, stepDec, stepInc, toggleCheck } from "./planSlice";
 import Button from "../../components/Button";
 import { useAccount } from "../../contexts/AccountContext";
 // import { createAddsOn } from "../features/plans/planSlice";
@@ -28,15 +28,16 @@ const prices = [1, 2, 2];
 
 function Third() {
   // Масив със състояния за всеки чекбокс
-  const [checked, setChecked] = useState([false, false, false]);
+  // const [checked, setChecked] = useState([false, false, false]);
   const dispatch = useDispatch();
 
   const payment = useSelector((store) => store.plan.payment);
+  const checked = useSelector((store) => store.plan.check);
 
   const { setTotal } = useAccount();
 
   function handleChange(index) {
-    setChecked((prev) => prev.map((item, i) => (i === index ? !item : item)));
+    dispatch(toggleCheck(index));
   }
 
   function handleNext(e) {

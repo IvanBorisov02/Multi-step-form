@@ -1,73 +1,64 @@
+import { createSlice } from "@reduxjs/toolkit";
+
 const initialState = {
   step: 1,
   selectedPlan: { planName: "Arcade", planPrice: 9 },
   payment: "month",
   addsOn: [],
+  check: [false, false, false],
 };
 
-export default function reducer(state = initialState, action) {
-  switch (action.type) {
-    case "account/stepInc":
-      return {
-        ...state,
-        step: state.step + 1,
-      };
+const planSlice = createSlice({
+  name: "account",
+  initialState,
+  reducers: {
+    stepInc(state) {
+      state.step += 1;
+    },
+    stepDec(state) {
+      if (state.step === 1) return;
 
-    case "account/stepDec":
-      if (state.step === 1) return state;
-      return {
-        ...state,
-        step: state.step - 1,
-      };
+      state.step -= 1;
+    },
+    selectPlan: {
+      prepare(planName, planPrice) {
+        return {
+          payload: {
+            planName,
+            planPrice,
+          },
+        };
+      },
 
-    case "account/selectPlan":
-      return {
-        ...state,
-        step: 2,
-        selectedPlan: {
+      reducer(state, action) {
+        state.step = 2;
+        state.selectedPlan = {
           planName: action.payload.planName,
           planPrice: action.payload.planPrice,
-        },
-      };
+        };
+      },
+    },
+    selectPayment(state, action) {
+      state.payment = action.payload;
+    },
+    createAddsOn(state, action) {
+      state.step = 3;
+      state.addsOn = [...state.addsOn, action.payload];
+    },
+    toggleCheck(state, action) {
+      state.check = state.check.map((item, i) =>
+        i === action.payload ? !item : item
+      );
+    },
+  },
+});
 
-    case "account/payment":
-      return {
-        ...state,
-        step: 2,
-        payment: action.payload,
-      };
-
-    case "account/addsOn":
-      return {
-        ...state,
-        step: 3,
-        addsOn: [...state.addsOn, action.payload],
-      };
-
-    default:
-      return state;
-  }
-}
-
-export function stepInc() {
-  return { type: "account/stepInc" };
-}
-
-export function stepDec() {
-  return { type: "account/stepDec" };
-}
-
-export function selectPlan(name, price) {
-  return {
-    type: "account/selectPlan",
-    payload: { planName: name, planPrice: price },
-  };
-}
-
-export function selectPayment(payment) {
-  return { type: "account/payment", payload: payment };
-}
-
-export function createAddsOn(addsOn) {
-  return { type: "account/addsOn", payload: addsOn };
-}
+export default planSlice.reducer;
+export const {
+  stepInc,
+  stepDec,
+  selectPlan,
+  selectPayment,
+  createAddsOn,
+  toggleCheck,
+} = planSlice.actions;

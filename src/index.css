@@ -448,16 +448,7 @@
   font-size: 1.25rem;
 }
 
-.addOn-price {
-  position: absolute;
-  right: 650px;
-}
-
 .adds-on-div {
   display: flex;
-}
-
-.plan-price {
-  position: absolute;
-  right: 650px;
+  justify-content: space-between;
 }

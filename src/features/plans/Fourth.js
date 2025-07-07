@@ -29,12 +29,11 @@ function Fourth() {
               ? `+$${plan.selectedPlan.planPrice}/${plan.payment}`
               : `+$${plan.selectedPlan.planPrice * 12}/${plan.payment}`}
           </p>
-
-          <br></br>
         </div>
+        <br />
 
         <div className="summarySelectedAddOns">
-          {plan.addsOn[0].map((addOn) => (
+          {plan.addsOn[plan.addsOn.length - 1].map((addOn) => (
             <div key={addOn.price} className="adds-on-div">
               <p>{addOn?.title}</p>
               {/* <p>{`$${addOn[index]?.price}`}</p> */}
